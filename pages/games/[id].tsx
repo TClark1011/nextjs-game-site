@@ -16,6 +16,7 @@ import {
 } from "@chakra-ui/react";
 import Head from "next/head";
 import Rate from "rc-rate";
+import ReactHtmlParser from "react-html-parser";
 
 interface GameDetailProps {
 	label: string;
@@ -58,6 +59,7 @@ const gamePage: React.FC<Props> = ({
 	for (let i = 0; i < Math.round(rating); i++) {
 		starArray.push(<StarIcon key={i} />);
 	}
+	const descriptionElement = ReactHtmlParser(description);
 	return (
 		<Box>
 			<Head>
@@ -70,22 +72,27 @@ const gamePage: React.FC<Props> = ({
 						alignItems="center"
 						h="100vh"
 					>
-						<Image
-							src={background_image}
-							w={["300px", "350px", "400px"]}
-							h={["450px", "475px", "600px"]}
-							objectFit="cover"
-						/>
+						<Center w="100%">
+							<Image
+								src={background_image}
+								w={["300px", "350px", "400px"]}
+								h={["450px", "475px", "600px"]}
+								objectFit="cover"
+							/>
+						</Center>
 						<Box>
 							<Heading as="h2">{name}</Heading>
 							<Divider />
-							<Text w="100%">{description}</Text>
+							<Box w="100%">{descriptionElement}</Box>
 							<Divider />
 							<GameDetail
 								label="Release Date"
 								value={<Text>{released}</Text>}
 							/>
-							<GameDetail label="Rating" value={<Rate value={rating} />} />
+							<GameDetail
+								label="Rating"
+								value={<Rate value={rating} disabled={true} />}
+							/>
 							<GameDetail label="Last Updated" value={<Text>{updated}</Text>} />
 							{reddit_url && (
 								<GameDetail
