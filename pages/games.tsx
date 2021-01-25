@@ -1,9 +1,10 @@
 import { GetServerSideProps } from "next";
 import GameList from "../components/GameList";
 import { fetchGames } from "../services/games";
+import IGame from "../types/IGame";
 
 interface Props {
-	games: unknown[];
+	games: IGame[];
 }
 
 const games: React.FC<Props> = ({ games, ...props }) => {
@@ -16,8 +17,7 @@ const games: React.FC<Props> = ({ games, ...props }) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async () => {
-	const data = await fetchGames();
-	console.log("(GameList) data: ", data);
+	const data: any = await fetchGames();
 	return { "props": { "games": data.results } };
 };
 

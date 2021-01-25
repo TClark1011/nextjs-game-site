@@ -1,3 +1,4 @@
+import { Box, Image, SimpleGrid, Text } from "@chakra-ui/react";
 import IGame from "../types/IGame";
 
 interface Props {
@@ -7,14 +8,19 @@ interface Props {
 const GameList: React.FC<Props> = ({ games, ...props }) => {
 	return (
 		<div {...props}>
-			<ul>
+			<SimpleGrid columns={[2, 3, 4, 6, 8]}>
 				{games.map(({ name, background_image }, index) => (
-					<li>
-						<img src={background_image} />
-						<b>{name}</b>
-					</li>
+					<Box>
+						<Image
+							src={background_image}
+							w="200px"
+							h="350px"
+							objectFit="cover"
+						/>
+						<Text fontWeight="bold">{name}</Text>
+					</Box>
 				))}
-			</ul>
+			</SimpleGrid>
 		</div>
 	);
 };
