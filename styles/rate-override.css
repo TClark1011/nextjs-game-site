@@ -1,0 +1,7 @@
+.rc-rate-star {
+	margin-right: 2px;
+}
+.rc-rate-star-half .rc-rate-star-first,
+.rc-rate-star-full .rc-rate-star-second {
+	color: black;
+}
