@@ -61,25 +61,24 @@ const gamePage: React.FC<Props> = ({
 	}
 	const descriptionElement = ReactHtmlParser(description);
 	return (
-		<Box>
+		<Box width="100vw">
 			<Head>
 				<title>{name}</title>
 			</Head>
 			<Center>
-				<Box w="80vw">
+				<Box w={["100vw", "100vw", "90vw", "80vw"]}>
 					<Flex
 						flexWrap={["wrap", "wrap", "nowrap", "nowrap"]}
 						alignItems="center"
 						h="100vh"
 					>
-						<Center w="100%">
-							<Image
-								src={background_image}
-								w={["300px", "350px", "400px"]}
-								h={["450px", "475px", "600px"]}
-								objectFit="cover"
-							/>
-						</Center>
+						<Image
+							src={background_image}
+							w={["300px", "300px", "300px", "350px"]}
+							h={["450px", "450px", "500px", "500px"]}
+							objectFit="cover"
+							margin="auto"
+						/>
 						<Box>
 							<Heading as="h2">{name}</Heading>
 							<Divider />
