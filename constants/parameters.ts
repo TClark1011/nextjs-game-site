@@ -1,1 +1,1 @@
-export const gameListPageSize = 10;
+export const gameListPageSize = 20;

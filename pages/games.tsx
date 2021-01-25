@@ -7,9 +7,10 @@ import IGame from "../types/IGame";
 
 interface Props {
 	games: IGame[];
+	page: number;
 }
 
-const games: React.FC<Props> = ({ games }) => {
+const games: React.FC<Props> = ({ games, page }) => {
 	return (
 		<Box>
 			<Head>
@@ -21,8 +22,8 @@ const games: React.FC<Props> = ({ games }) => {
 	);
 };
 
-export const getServerSideProps: GetServerSideProps = async () => {
-	const data: any = await fetchGames();
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+	const data: any = await fetchGames(query);
 	return { "props": { "games": data.results } };
 };
 

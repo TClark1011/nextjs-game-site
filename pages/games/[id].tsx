@@ -5,6 +5,7 @@ import { fetchSingleGame } from "../../services/games";
 import { StarIcon } from "@chakra-ui/icons";
 import {
 	Box,
+	Button,
 	Center,
 	ChakraComponent,
 	Divider,
@@ -42,7 +43,7 @@ interface Props extends IGame {
 	rating: number;
 	description: string;
 	updated: string;
-	reddit_url?: string;
+	esrb_rating: { id: number; name: string };
 }
 
 const gamePage: React.FC<Props> = ({
@@ -51,9 +52,8 @@ const gamePage: React.FC<Props> = ({
 	background_image,
 	name,
 	description,
-	reddit_url,
 	updated,
-	platforms,
+	esrb_rating,
 }) => {
 	const starArray = [];
 	for (let i = 0; i < Math.round(rating); i++) {
@@ -89,16 +89,14 @@ const gamePage: React.FC<Props> = ({
 								value={<Text>{released}</Text>}
 							/>
 							<GameDetail
-								label="Rating"
+								label="Score"
 								value={<Rate value={rating} disabled={true} />}
 							/>
+							<GameDetail
+								label="ESRB Rating"
+								value={<Text>{esrb_rating.name}</Text>}
+							/>
 							<GameDetail label="Last Updated" value={<Text>{updated}</Text>} />
-							{reddit_url && (
-								<GameDetail
-									label="Subreddit"
-									value={<Link href={reddit_url}>Link</Link>}
-								/>
-							)}
 						</Box>
 					</Flex>
 				</Box>
