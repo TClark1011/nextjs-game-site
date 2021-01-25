@@ -1,1 +1,1 @@
-export const api_root = "https://api.igdb.com/v4";
+export const apiRootUrl = "https://rawg-video-games-database.p.rapidapi.com/";
