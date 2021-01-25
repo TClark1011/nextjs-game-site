@@ -9,5 +9,8 @@
 	},
 	"cSpell.words": [
 		"metacritic"
-	]
+	],
+	"[javascript]": {
+		"editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+	}
 }
