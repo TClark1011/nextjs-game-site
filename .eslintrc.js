@@ -4,17 +4,13 @@ module.exports = {
 		"node": true,
 		"jest": true,
 	},
-	"extends": [
-		"eslint:recommended",
-		"plugin:@typescript-eslint/recommended",
-		"plugin:jsdoc/recommended",
-	],
+	"extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
 	"parser": "@typescript-eslint/parser",
 	"parserOptions": {
 		"ecmaVersion": 12,
 		"sourceType": "module",
 	},
-	"plugins": ["@typescript-eslint", "jsdoc", "prefer-arrow"],
+	"plugins": ["@typescript-eslint", "prefer-arrow"],
 	"rules": {
 		"indent": [
 			"error",
