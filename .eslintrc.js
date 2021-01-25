@@ -29,6 +29,7 @@ module.exports = {
 		"brace-style": "error",
 		"no-mixed-spaces-and-tabs": "off",
 		"no-useless-escape": "off",
+		"@typescript-eslint/no-explicit-any": "off",
 		//# prefer arrow function rules
 		"prefer-arrow/prefer-arrow-functions": [
 			"error",
