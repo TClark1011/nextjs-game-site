@@ -43,9 +43,14 @@ const games: React.FC<Props> = ({ games, page = 1 }) => {
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
 	const page: number = query.page ? parseInt(query.page as string) : 1;
+	const search: string = query.search
+		? typeof query.search === "string"
+			? query.search
+			: query.search.join()
+		: "";
 	const data: any = await fetchGames(query);
 	return {
-		"props": { "games": data.results, page },
+		"props": { "games": data.results, page, search },
 	};
 };
 

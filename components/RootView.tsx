@@ -1,16 +1,18 @@
 import { SearchIcon } from "@chakra-ui/icons";
 import {
-	AspectRatio,
 	Box,
 	Center,
 	ChakraStyleProps,
 	Flex,
 	IconButton,
 	Input,
+	Link,
 	Square,
 } from "@chakra-ui/react";
+import { useState } from "react";
 
 const RootView: React.FC<ChakraStyleProps> = ({ children, ...props }) => {
+	const [searchBarContent, setSearchBarContent] = useState<string>("");
 	return (
 		<Box {...props}>
 			<Center w="100%" h={7} bg="teal.300">
@@ -21,7 +23,6 @@ const RootView: React.FC<ChakraStyleProps> = ({ children, ...props }) => {
 					h="70%"
 					borderRadius="3xl"
 					align="center"
-					// overflow="hidden"
 				>
 					<Input
 						h="100%"
@@ -29,6 +30,7 @@ const RootView: React.FC<ChakraStyleProps> = ({ children, ...props }) => {
 						placeholder="Search"
 						border="none"
 						_focus={{ "outline": "none" }}
+						onChange={(e) => setSearchBarContent(e.target.value)}
 					></Input>
 					<Square boxSize={5} mr={1}>
 						<IconButton
@@ -38,7 +40,9 @@ const RootView: React.FC<ChakraStyleProps> = ({ children, ...props }) => {
 							display="flex"
 							justifyContent="center"
 							borderRadius="3xl"
-							bg="teal.200"
+							bg="teal.300"
+							as={Link}
+							href={`/games?search=${searchBarContent}`}
 						>
 							<SearchIcon color="white" fontWeight="bold" />
 						</IconButton>
