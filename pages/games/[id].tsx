@@ -1,25 +1,22 @@
 import React from "react";
-import { useRouter } from "next/router";
 import IGame from "../../types/IGame";
 import { fetchSingleGame } from "../../services/games";
 import { StarIcon } from "@chakra-ui/icons";
 import {
 	AspectRatio,
 	Box,
-	Button,
 	Center,
-	ChakraComponent,
 	Divider,
 	Flex,
 	Heading,
 	Image,
-	Link,
 	Text,
 } from "@chakra-ui/react";
 import Head from "next/head";
 import Rate from "rc-rate";
 import ReactHtmlParser from "react-html-parser";
 import RootView from "../../components/RootView";
+import { GetServerSideProps } from "next";
 
 interface GameDetailProps {
 	label: string;
@@ -57,10 +54,6 @@ const gamePage: React.FC<Props> = ({
 	updated,
 	esrb_rating,
 }) => {
-	const starArray = [];
-	for (let i = 0; i < Math.round(rating); i++) {
-		starArray.push(<StarIcon key={i} />);
-	}
 	const descriptionElement = ReactHtmlParser(description);
 	return (
 		<RootView>
@@ -108,10 +101,12 @@ const gamePage: React.FC<Props> = ({
 								label="Score"
 								value={<Rate value={rating} disabled={true} />}
 							/>
-							<GameDetail
-								label="ESRB Rating"
-								value={<Text>{esrb_rating.name}</Text>}
-							/>
+							{esrb_rating && (
+								<GameDetail
+									label="ESRB Rating"
+									value={<Text>{esrb_rating.name}</Text>}
+								/>
+							)}
 							<GameDetail label="Last Updated" value={<Text>{updated}</Text>} />
 						</Box>
 					</Flex>
@@ -121,8 +116,13 @@ const gamePage: React.FC<Props> = ({
 	);
 };
 
-export const getServerSideProps = async (context): Promise<unknown> => {
-	const data = await fetchSingleGame(context.query.id);
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+	const id = query.id
+		? typeof query.id === "string"
+			? parseInt(query.id)
+			: parseInt(query.id.join(""))
+		: 1;
+	const data = await fetchSingleGame(id);
 	return { "props": data };
 };
 
