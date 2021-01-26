@@ -5,6 +5,7 @@ import GameList from "../components/GameList";
 import { fetchGames } from "../services/games";
 import IGame from "../types/IGame";
 import { ArrowBackIcon, ArrowForwardIcon } from "@chakra-ui/icons";
+import RootView from "../components/RootView";
 
 interface Props {
 	games: IGame[];
@@ -13,7 +14,7 @@ interface Props {
 
 const games: React.FC<Props> = ({ games, page = 1 }) => {
 	return (
-		<Box>
+		<RootView>
 			<Head>
 				<title>Games</title>
 			</Head>
@@ -36,7 +37,7 @@ const games: React.FC<Props> = ({ games, page = 1 }) => {
 					<ArrowForwardIcon />
 				</IconButton>
 			</Center>
-		</Box>
+		</RootView>
 	);
 };
 

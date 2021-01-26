@@ -19,6 +19,7 @@ import {
 import Head from "next/head";
 import Rate from "rc-rate";
 import ReactHtmlParser from "react-html-parser";
+import RootView from "../../components/RootView";
 
 interface GameDetailProps {
 	label: string;
@@ -62,7 +63,7 @@ const gamePage: React.FC<Props> = ({
 	}
 	const descriptionElement = ReactHtmlParser(description);
 	return (
-		<Box width="100vw">
+		<RootView>
 			<Head>
 				<title>{name}</title>
 			</Head>
@@ -77,8 +78,6 @@ const gamePage: React.FC<Props> = ({
 						flexWrap={["wrap", "wrap", "nowrap", "nowrap"]}
 						alignItems="center"
 						margin="auto"
-						backgroundColor="white"
-						boxShadow="md"
 					>
 						<AspectRatio
 							ratio={0.8}
@@ -118,7 +117,7 @@ const gamePage: React.FC<Props> = ({
 					</Flex>
 				</Flex>
 			</Center>
-		</Box>
+		</RootView>
 	);
 };
 
