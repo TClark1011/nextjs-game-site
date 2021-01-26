@@ -4,6 +4,7 @@ import IGame from "../../types/IGame";
 import { fetchSingleGame } from "../../services/games";
 import { StarIcon } from "@chakra-ui/icons";
 import {
+	AspectRatio,
 	Box,
 	Button,
 	Center,
@@ -66,20 +67,36 @@ const gamePage: React.FC<Props> = ({
 				<title>{name}</title>
 			</Head>
 			<Center>
-				<Box w={["100vw", "100vw", "90vw", "80vw"]}>
+				<Flex
+					w={["100vw", "100vw", "90vw", "80vw"]}
+					h="100vh"
+					alignItems="center"
+					justify="center"
+				>
 					<Flex
 						flexWrap={["wrap", "wrap", "nowrap", "nowrap"]}
 						alignItems="center"
-						h="100vh"
+						margin="auto"
+						backgroundColor="white"
+						boxShadow="md"
 					>
-						<Image
-							src={background_image}
-							w={["300px", "300px", "300px", "350px"]}
-							h={["450px", "450px", "500px", "500px"]}
-							objectFit="cover"
+						<AspectRatio
+							ratio={0.8}
+							minW={["80vw", "70vw", "30%"]}
 							margin="auto"
-						/>
-						<Box>
+							position="relative"
+						>
+							<Image
+								src={background_image}
+								w="100%"
+								h="100%"
+								objectFit="cover"
+								position="absolute"
+								top="0"
+								left={0}
+							/>
+						</AspectRatio>
+						<Box p={2}>
 							<Heading as="h2">{name}</Heading>
 							<Divider />
 							<Box w="100%">{descriptionElement}</Box>
@@ -99,7 +116,7 @@ const gamePage: React.FC<Props> = ({
 							<GameDetail label="Last Updated" value={<Text>{updated}</Text>} />
 						</Box>
 					</Flex>
-				</Box>
+				</Flex>
 			</Center>
 		</Box>
 	);
