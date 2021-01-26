@@ -17,7 +17,7 @@ const GameList: React.FC<Props> = ({ games, ...props }) => {
 	return (
 		<SimpleGrid columns={[2, 3, 4, 6, 8]} {...props}>
 			{games.map(({ name, background_image, id }, index) => (
-				<Box paddingBottom={1} padding={0}>
+				<Box paddingBottom={1} padding={0} key={id}>
 					<Box backgroundColor="white" boxShadow="md" borderRadius="sm">
 						<LinkBox
 							w="100%"
