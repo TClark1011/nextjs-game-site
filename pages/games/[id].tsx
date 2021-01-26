@@ -20,7 +20,7 @@ import { GetServerSideProps } from "next";
 
 interface GameDetailProps {
 	label: string;
-	value: JSX.Element | JSX.Element[];
+	value: JSX.Element;
 }
 
 const GameDetail: React.FC<GameDetailProps> = ({ label, value }) => {
@@ -28,7 +28,7 @@ const GameDetail: React.FC<GameDetailProps> = ({ label, value }) => {
 		<>
 			<Flex justify="space-between">
 				<Text fontWeight="bold">{label}</Text>
-				<Text>{value}</Text>
+				{value}
 			</Flex>
 			<Divider />
 		</>
