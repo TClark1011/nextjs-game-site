@@ -59,7 +59,7 @@ const games: React.FC<Props> = ({ games, page = 1, search = "" }) => {
 			<Heading as="h2">Games</Heading>
 			<GameList games={games} w="100%" />
 			<Center>
-				<Flex width={9} justify="space-between">
+				<Flex width={9} justify="space-between" my={3}>
 					<PageButton type="previous" Icon={ArrowBackIcon} />
 					<PageButton type="next" Icon={ArrowForwardIcon} />
 				</Flex>

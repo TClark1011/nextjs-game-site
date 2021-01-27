@@ -60,10 +60,9 @@ const gamePage: React.FC<Props> = ({
 			<Head>
 				<title>{name}</title>
 			</Head>
-			<Center>
+			<Center minH="90vh">
 				<Flex
 					w={["100vw", "100vw", "90vw", "80vw"]}
-					h="100vh"
 					alignItems="center"
 					justify="center"
 				>

@@ -28,7 +28,7 @@ const RootView: React.FC<ChakraStyleProps> = ({ children, ...props }) => {
 					w="80%"
 					maxW="600px"
 					bg="white"
-					h="70%"
+					h={6}
 					borderRadius="3xl"
 					align="center"
 				>
