@@ -6,7 +6,6 @@ import { fetchGames } from "../services/games";
 import IGame from "../types/IGame";
 import { ArrowBackIcon, ArrowForwardIcon } from "@chakra-ui/icons";
 import RootView from "../components/RootView";
-import QueryString from "qs";
 
 interface Props {
 	games: IGame[];
