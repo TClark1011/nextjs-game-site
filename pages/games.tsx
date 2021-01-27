@@ -1,4 +1,13 @@
-import { Center, Heading, IconButton, Link } from "@chakra-ui/react";
+import {
+	Center,
+	ChakraStyleProps,
+	ComponentWithAs,
+	Flex,
+	Heading,
+	IconButton,
+	IconProps,
+	Link,
+} from "@chakra-ui/react";
 import { GetServerSideProps } from "next";
 import Head from "next/head";
 import GameList from "../components/GameList";
@@ -6,6 +15,7 @@ import { fetchGames } from "../services/games";
 import IGame from "../types/IGame";
 import { ArrowBackIcon, ArrowForwardIcon } from "@chakra-ui/icons";
 import RootView from "../components/RootView";
+import { ReactNode } from "react";
 
 interface Props {
 	games: IGame[];
@@ -13,8 +23,33 @@ interface Props {
 	search?: string;
 }
 
+interface PageButtonProps extends ChakraStyleProps {
+	type: "next" | "previous";
+	Icon: ComponentWithAs<"svg", IconProps>;
+}
+
 const games: React.FC<Props> = ({ games, page = 1, search = "" }) => {
 	const getSearchParam = () => (search ? `&search=${search}` : "");
+
+	const PageButton: React.FC<PageButtonProps> = ({ type, Icon, ...props }) => (
+		<IconButton
+			aria-label={`${type}-page`}
+			as={Link}
+			href={`/games?page=${
+				type === "next" ? page + 1 : page - 1
+			}${getSearchParam()}`}
+			isDisabled={type === "previous" && page === 1}
+			bg="teal.300"
+			_hover={{ "bg": "teal.200" }}
+			h={6}
+			minW={6}
+			borderRadius="full"
+			color="white"
+			{...props}
+		>
+			<Icon />
+		</IconButton>
+	);
 
 	return (
 		<RootView>
@@ -24,21 +59,10 @@ const games: React.FC<Props> = ({ games, page = 1, search = "" }) => {
 			<Heading as="h2">Games</Heading>
 			<GameList games={games} w="100%" />
 			<Center>
-				<IconButton
-					aria-label="previous-page"
-					as={Link}
-					href={`/games?page=${page - 1}${getSearchParam()}`}
-					isDisabled={page === 1}
-				>
-					<ArrowBackIcon />
-				</IconButton>
-				<IconButton
-					aria-label="next-page"
-					as={Link}
-					href={`/games?page=${page + 1}${getSearchParam()}`}
-				>
-					<ArrowForwardIcon />
-				</IconButton>
+				<Flex width={9} justify="space-between">
+					<PageButton type="previous" Icon={ArrowBackIcon} />
+					<PageButton type="next" Icon={ArrowForwardIcon} />
+				</Flex>
 			</Center>
 		</RootView>
 	);
