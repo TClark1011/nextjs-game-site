@@ -16,7 +16,7 @@ interface Props extends ChakraStyleProps {
 const GameList: React.FC<Props> = ({ games, ...props }) => {
 	return (
 		<SimpleGrid columns={[2, 3, 4, 6, 8]} {...props}>
-			{games.map(({ name, background_image, id }, index) => (
+			{games.map(({ name, background_image, id }) => (
 				<Box paddingBottom={1} padding={0} key={id}>
 					<Box backgroundColor="white" boxShadow="md" borderRadius="sm">
 						<LinkBox
@@ -33,7 +33,7 @@ const GameList: React.FC<Props> = ({ games, ...props }) => {
 								objectFit="cover"
 							/>
 						</LinkBox>
-						<Center height="3rem">
+						<Center minH="3rem">
 							<Link
 								fontWeight="bold"
 								href={`/games/${id}`}
