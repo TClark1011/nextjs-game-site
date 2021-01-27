@@ -1,4 +1,4 @@
-import { Box, Center, Heading, IconButton, Link } from "@chakra-ui/react";
+import { Center, Heading, IconButton, Link } from "@chakra-ui/react";
 import { GetServerSideProps } from "next";
 import Head from "next/head";
 import GameList from "../components/GameList";
@@ -6,13 +6,17 @@ import { fetchGames } from "../services/games";
 import IGame from "../types/IGame";
 import { ArrowBackIcon, ArrowForwardIcon } from "@chakra-ui/icons";
 import RootView from "../components/RootView";
+import QueryString from "qs";
 
 interface Props {
 	games: IGame[];
 	page: number;
+	search?: string;
 }
 
-const games: React.FC<Props> = ({ games, page = 1 }) => {
+const games: React.FC<Props> = ({ games, page = 1, search = "" }) => {
+	const getSearchParam = () => (search ? `&search=${search}` : "");
+
 	return (
 		<RootView>
 			<Head>
@@ -24,7 +28,7 @@ const games: React.FC<Props> = ({ games, page = 1 }) => {
 				<IconButton
 					aria-label="previous-page"
 					as={Link}
-					href={`/games?page=${page - 1}`}
+					href={`/games?page=${page - 1}${getSearchParam()}`}
 					isDisabled={page === 1}
 				>
 					<ArrowBackIcon />
@@ -32,7 +36,7 @@ const games: React.FC<Props> = ({ games, page = 1 }) => {
 				<IconButton
 					aria-label="next-page"
 					as={Link}
-					href={`/games?page=${page + 1}`}
+					href={`/games?page=${page + 1}${getSearchParam()}`}
 				>
 					<ArrowForwardIcon />
 				</IconButton>
