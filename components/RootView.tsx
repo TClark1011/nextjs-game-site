@@ -9,10 +9,18 @@ import {
 	Link,
 	Square,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { KeyboardEventHandler, useState } from "react";
 
 const RootView: React.FC<ChakraStyleProps> = ({ children, ...props }) => {
 	const [searchBarContent, setSearchBarContent] = useState<string>("");
+
+	const getSearchUrl = () => `/games?search=${searchBarContent}`;
+
+	const handleSearchBarKeyPress: KeyboardEventHandler = (e) => {
+		if (e.key === "Enter") {
+			window.location.href = getSearchUrl();
+		}
+	};
 	return (
 		<Box {...props}>
 			<Center w="100%" h={7} bg="teal.300">
@@ -31,6 +39,7 @@ const RootView: React.FC<ChakraStyleProps> = ({ children, ...props }) => {
 						border="none"
 						_focus={{ "outline": "none" }}
 						onChange={(e) => setSearchBarContent(e.target.value)}
+						onKeyPress={handleSearchBarKeyPress}
 					></Input>
 					<Square boxSize={5} mr={1}>
 						<IconButton
@@ -42,7 +51,7 @@ const RootView: React.FC<ChakraStyleProps> = ({ children, ...props }) => {
 							borderRadius="3xl"
 							bg="teal.300"
 							as={Link}
-							href={`/games?search=${searchBarContent}`}
+							href={getSearchUrl()}
 						>
 							<SearchIcon color="white" fontWeight="bold" />
 						</IconButton>
