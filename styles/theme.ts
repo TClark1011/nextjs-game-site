@@ -19,4 +19,28 @@ const refactorUiValues = [
 export default extendTheme({
 	"space": refactorUiValues,
 	"sizes": refactorUiValues,
+	"components": {
+		"Link": {
+			"baseStyle": { "color": "blue.400" },
+		},
+		"Button": {
+			"baseStyle": {
+				"color": "white",
+				"borderRadius": "2xl",
+			},
+			"sizes": {
+				"md": {
+					"h": 7,
+					"minW": 6,
+				},
+			},
+			"variants": {
+				"solid": {
+					"bg": "teal.300",
+					"_hover": { "bg": "teal.200" },
+					"_active": { "bg": "teal.100" },
+				},
+			},
+		},
+	},
 });
