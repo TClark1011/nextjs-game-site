@@ -17,6 +17,7 @@ import Rate from "rc-rate";
 import ReactHtmlParser from "react-html-parser";
 import RootView from "../../components/RootView";
 import { GetServerSideProps } from "next";
+import { useLandingPageHeight } from "../../styles/utilities";
 
 interface GameDetailProps {
 	label: string;
@@ -60,7 +61,7 @@ const gamePage: React.FC<Props> = ({
 			<Head>
 				<title>{name}</title>
 			</Head>
-			<Center minH="90vh">
+			<Center minH={useLandingPageHeight()}>
 				<Flex
 					w={["100vw", "100vw", "90vw", "80vw"]}
 					alignItems="center"
