@@ -10,6 +10,7 @@ import {
 	Square,
 } from "@chakra-ui/react";
 import { KeyboardEventHandler, useState } from "react";
+import { topBarHeight } from "../styles/styleVars";
 
 const RootView: React.FC<ChakraStyleProps> = ({ children, ...props }) => {
 	const [searchBarContent, setSearchBarContent] = useState<string>("");
@@ -23,7 +24,7 @@ const RootView: React.FC<ChakraStyleProps> = ({ children, ...props }) => {
 	};
 	return (
 		<Box {...props}>
-			<Center w="100%" h={7} bg="teal.300">
+			<Center w="100%" h={topBarHeight} bg="teal.300">
 				<Flex
 					w="80%"
 					maxW="600px"
