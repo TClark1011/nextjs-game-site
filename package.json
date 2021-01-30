@@ -18,7 +18,8 @@
 		"react": "17.0.1",
 		"react-dom": "17.0.1",
 		"react-feather": "^2.0.9",
-		"react-html-parser": "^2.0.2"
+		"react-html-parser": "^2.0.2",
+		"to-title-case": "^1.0.0"
 	},
 	"devDependencies": {
 		"@types/node": "^14.14.22",

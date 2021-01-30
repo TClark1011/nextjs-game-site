@@ -37,24 +37,17 @@ const RootView: React.FC<ChakraStyleProps> = ({ children, ...props }) => {
 				position="relative"
 			>
 				{router.pathname !== "/" && (
-					<LinkBox
+					<IconButton
+						aria-label="return to home"
+						icon={<Home />}
 						boxSize={6}
-						position={["absolute", "absolute", "static"]}
-						left="0"
-						bg="none"
+						border="2px solid white"
+						borderRadius="full"
+						as={Link}
 						href="/"
 						marginLeft={[0, 2]}
 						marginRight={[0, 0, 2]}
-					>
-						<IconButton
-							aria-label="return to home"
-							icon={<Home />}
-							h="100%"
-							w="100%"
-							border="2px solid white"
-							borderRadius="full"
-						/>
-					</LinkBox>
+					/>
 				)}
 				<Flex
 					w="80%"

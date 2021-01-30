@@ -41,6 +41,7 @@ const GameList: React.FC<Props> = ({ games, ...props }) => {
 								paddingX={1}
 								display="block"
 								textAlign="center"
+								color="gray.900"
 							>
 								{name}
 							</Link>
